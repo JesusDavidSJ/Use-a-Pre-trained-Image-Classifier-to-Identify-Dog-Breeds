@@ -68,18 +68,13 @@ def classify_images(images_dir, results_dic, model):
     
     for key, value in results_dic.items():
       output =  []
-      classifier_label = classifier(images_dir+key, model)
+      classifier_label = classifier(images_dir+key, model).lower().strip()
       output.append(classifier_label)
+
+      classifier_label = classifier_label.split(", ")
       
-      classifier_label_m = classifier_label.lower()
-      classifier_label_m = classifier_label_m.split(",")
-      classifier_label_m = [x.lstrip() for x in classifier_label_m]
-      classifier_label_m = [x.strip() for x in classifier_label_m]
-      
-      if value[0] in classifier_label_m:
-        output.append(1)
-      else:
-        output.append(0)
+      match = int(value[0] in classifier_label)
+      output.append(match)
       
       value.extend(output)
     None 

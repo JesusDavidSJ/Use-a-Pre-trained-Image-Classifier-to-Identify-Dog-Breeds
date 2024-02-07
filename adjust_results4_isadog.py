@@ -72,7 +72,7 @@ def adjust_results4_isadog(results_dic, dogfile):
     # Elimina el salto de linea
     doglist = [dog.strip() for dog in doglist]
     
-    for key, value in results_dic.items():
+    for value in results_dic.values():
         output = []
         if value[0] in doglist:
             output.append(1)
@@ -89,4 +89,4 @@ def adjust_results4_isadog(results_dic, dogfile):
                 break
         
         output.append(classifier)
-        results_dic[key].extend(output)
+        value.extend(output)

@@ -63,10 +63,18 @@ def print_results(results_dic, results_stats_dic, model,
            None - simply printing results.
     """    
     print("\n\n*** Results Summary for CNN Model Architecture",model,"***")
-        
-    for key, value in results_stats_dic.items():
-        print(f"{key} : {value}")
     
+    values_to_print = ["n_images", "n_dogs_img", "n_notdogs_img"]
+    pcts_to_print = ["pct_match", "pct_correct_dogs", "pct_correct_breed", "pct_correct_notdogs"]
+
+    for value in values_to_print:
+        print(f"{value} : {results_stats_dic[value]}")
+        
+    print("\n")
+    
+    for pct in pcts_to_print:
+        print(f"{pct} : {results_stats_dic[pct]}")
+        
     if print_incorrect_dogs and (results_stats_dic["n_correct_dogs"] + results_stats_dic["n_correct_notdogs"] != results_stats_dic["n_images"]):
         print("\nINCORRECT Dog/NOT Dog Assignments:")
         for key, value in results_dic.items():

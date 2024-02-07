@@ -50,19 +50,9 @@ def get_pet_labels(image_dir):
     # in a list like this: ['Boston_terrier_02259.jpg', 'Boston_terrier_02303.jpg', 'Boston_terrier_02340.jpg'], remove the .jpg and the numbers, if ends with "_", remove it too, and replace "_" with "
     for name in name_list:
         name = name.lower()
-        name = name.replace(".jpg", "")
-        name = name.replace("0", "")
-        name = name.replace("1", "")
-        name = name.replace("2", "")
-        name = name.replace("3", "")
-        name = name.replace("4", "")
-        name = name.replace("5", "")
-        name = name.replace("6", "")
-        name = name.replace("7", "")
-        name = name.replace("8", "")
-        name = name.replace("9", "")
-        name = name.replace("_", " ")
-        name = name.strip()
+        parts = name.split("_")
+        name = " ".join([part for part in parts if part.isalpha()])
+        
         new_list.append(name)
     
     for i in range(len(name_list)):
